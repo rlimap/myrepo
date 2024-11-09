@@ -1,0 +1,37 @@
+import os
+import random
+import time
+
+# Lista de arquivos de exemplo para simulação
+arquivos = ["documento1.txt", "imagem2.png", "relatorio3.pdf"]
+
+def mostrar_mensagem_ameaca():
+    print("Atenção! Seus arquivos estão em perigo...")
+    time.sleep(1)
+    print("Você está jogando 'roleta-russa' com seus dados!")
+
+def selecionar_arquivo():
+    return random.choice(arquivos)
+
+def simular_criptografia(arquivo):
+    print(f"O arquivo {arquivo} foi 'sequestrado'!")
+    # Simulação: Renomeia para indicar que está 'bloqueado'
+    os.rename(arquivo, arquivo + ".bloqueado")
+
+def simular_desbloqueio():
+    for arquivo in arquivos:
+        if os.path.exists(arquivo + ".bloqueado"):
+            os.rename(arquivo + ".bloqueado", arquivo)
+            print(f"O arquivo {arquivo} foi restaurado!")
+
+def iniciar():
+    mostrar_mensagem_ameaca()
+    arquivo_sorteado = selecionar_arquivo()
+    simular_criptografia(arquivo_sorteado)
+    print("Para desbloquear seus arquivos, insira a 'senha': ")
+    input("Senha: ")
+    simular_desbloqueio()
+    print("Seus arquivos estão seguros... desta vez!")
+
+if __name__ == "__main__":
+    iniciar()
